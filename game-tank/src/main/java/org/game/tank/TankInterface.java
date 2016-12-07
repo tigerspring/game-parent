@@ -1,17 +1,16 @@
 package org.game.tank;
 
-import javax.swing.ImageIcon;
+import java.awt.Graphics;
 
-import org.game.bullet.bulletimpl.Bullet;
 import org.game.tank.tankimpl.AbstractTank;
 
 public interface TankInterface {
 
 	public void move(int type);
 	
-	public Bullet fire();
+	public void fire();
 	
-	public ImageIcon draw(int type,AbstractTank tank);
+	public void draw(int type,AbstractTank tank,Graphics gr);
 	
 	public void load();
 	

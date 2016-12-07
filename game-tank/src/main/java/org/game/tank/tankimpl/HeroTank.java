@@ -18,13 +18,11 @@ public class HeroTank extends AbstractTank implements Runnable{
 	
 	private Bullet bullet;
 	
-	private HeroTank(Graphics gr){
-		this.gr = gr;
-	};
+	private HeroTank(){};
 	
-	public static synchronized AbstractTank getTankInstance(Graphics gr){
+	public static synchronized AbstractTank getTankInstance(){
 		if(heroTank == null){
-			return heroTank = new HeroTank(gr);
+			return heroTank = new HeroTank();
 		}
 		return heroTank;
 	}
@@ -47,8 +45,11 @@ public class HeroTank extends AbstractTank implements Runnable{
 		}
 	}
 
-	public Bullet fire() {
-		
+	public void fire() {
+		this.isFired = true;
+	}
+	
+	public Bullet getBullet(){
 		ImageIcon bulletImg = null; 
 		switch(directed){
 		case SOUTH:
@@ -64,13 +65,12 @@ public class HeroTank extends AbstractTank implements Runnable{
 			bulletImg = new ImageIcon("images/bullet01.png");
 			break;
 		}
-		bullet = new HeroBullet(herotank, bulletImg);
+		bullet = new HeroBullet(herotank, bulletImg,heroTank);
 		return bullet;
-		
 	}
 
-	public ImageIcon draw(int type,AbstractTank tank) {
-		
+	public void draw(int type,AbstractTank tank,Graphics gr) {
+		this.gr = gr;
 		switch(type){
 		case KeyEvent.VK_S:
 			directed = Directed.SOUTH;
@@ -92,9 +92,7 @@ public class HeroTank extends AbstractTank implements Runnable{
 			directed = Directed.SOUTH;
 			herotank = new ImageIcon("images/playertank14.png");
 		}
-//		System.out.println("draw gr="+gr);
-//		gr.drawImage(herotank.getImage(),tank.getX(),tank.getY(), null);
-		return herotank;
+		this.gr.drawImage(herotank.getImage(),tank.getX(),tank.getY(), null);
 	}
 
 	public void load() {

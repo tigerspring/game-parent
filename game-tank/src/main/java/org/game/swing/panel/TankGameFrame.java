@@ -20,7 +20,7 @@ public class TankGameFrame extends JFrame{
 		this.add(tp);
 		this.addKeyListener(tp);
 		this.setBackground(Color.gray);
-//		new Thread(tp).start();
+		new Thread(tp).start();
 	}
 	
 }

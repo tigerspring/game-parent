@@ -40,12 +40,17 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 		Image img = this.createImage(this.width, this.height);
 		Graphics gr = img.getGraphics();
 		
-		tank = HeroTank.getTankInstance(gr);
-		ImageIcon herotank = tank.draw(keyCode,tank);
-		gr.drawImage(herotank.getImage(),tank.getX(),tank.getY(), null);
-		
-		
-		
+		tank = HeroTank.getTankInstance();
+		tank.draw(keyCode,tank,gr);
+		System.out.println(tank.isFired());
+		if(tank.isFired() && bullet == null){
+			bullet = tank.getBullet();
+			bullet.draw(gr);
+			new Thread(bullet).start();
+		}
+		if(bullet != null){
+			bullet.redraw();
+		}
 //		ImageIcon bulletImg = new ImageIcon("images/bullet03.png");
 //		
 //		if(bullet == null){
@@ -63,11 +68,19 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_S||e.getKeyCode()==KeyEvent.VK_A||e.getKeyCode()==KeyEvent.VK_W||e.getKeyCode()==KeyEvent.VK_D)
-			tank.move(e.getKeyCode());
-		if(e.getKeyCode()==KeyEvent.VK_J)
-			tank.fire();
 		this.keyCode = e.getKeyCode();
+		switch(this.keyCode){
+		case KeyEvent.VK_S:
+			tank.move(this.keyCode);break;
+		case KeyEvent.VK_A:
+			tank.move(this.keyCode);break;
+		case KeyEvent.VK_W:
+			tank.move(this.keyCode);break;
+		case KeyEvent.VK_D:
+			tank.move(this.keyCode);break;
+		case KeyEvent.VK_J:
+			tank.fire();break;
+		}
 		repaint();
 	}
 
@@ -80,7 +93,7 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 		while(true){
 			try {
 				repaint();
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
