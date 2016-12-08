@@ -3,14 +3,16 @@ package org.game.bullet.bulletimpl;
 import java.awt.Graphics;
 
 import org.game.bullet.BulletInterface;
+import org.game.directed.Directed;
 
-public abstract class Bullet implements BulletInterface,Runnable {
+public abstract class Bullet implements BulletInterface {
 
 	protected int speed;
 	
 	protected int x,y;
 	
-	protected Graphics gr;
+	protected Directed directed;
+	
 
 	public int getX() {
 		return x;
@@ -29,8 +31,8 @@ public abstract class Bullet implements BulletInterface,Runnable {
 	}
 	
 	public abstract void draw(Graphics gr);
-	public abstract void redraw();
 	public abstract void redraw(Graphics gr);
+	public abstract boolean ifCollisionWall();
 	
 	
 }

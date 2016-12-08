@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 import org.game.bullet.bulletimpl.Bullet;
+import org.game.directed.Directed;
 import org.game.tank.TankInterface;
 
 public abstract class AbstractTank implements TankInterface{
@@ -22,6 +23,8 @@ public abstract class AbstractTank implements TankInterface{
 	protected Integer speed = 0;
 	
 	protected ImageIcon herotank = null;
+	
+	protected Directed directed;
 	
 	protected Graphics gr;
 
@@ -50,5 +53,15 @@ public abstract class AbstractTank implements TankInterface{
 	}
 	
 	public abstract Bullet getBullet();
+
+	public Directed getDirected() {
+		return directed;
+	}
+
+	public void setDirected(Directed directed) {
+		this.directed = directed;
+	}
+	
+	
 	
 }

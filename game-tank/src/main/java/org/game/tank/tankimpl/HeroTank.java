@@ -8,13 +8,14 @@ import javax.swing.ImageIcon;
 import org.game.bullet.bulletimpl.Bullet;
 import org.game.bullet.bulletimpl.HeroBullet;
 import org.game.directed.Directed;
+import org.game.swing.panel.TankPanel;
 import org.game.tank.TankInterface;
 
 public class HeroTank extends AbstractTank implements Runnable{
 	
 	private static HeroTank heroTank;
 	
-	private Directed directed;
+	
 	
 	private Bullet bullet;
 	
@@ -28,7 +29,7 @@ public class HeroTank extends AbstractTank implements Runnable{
 	}
 	
 	public void move(int type) {
-		this.speed = 1;
+		this.speed = 2;
 		switch(type){
 			case KeyEvent.VK_S:
 				this.y = this.y + speed;
@@ -89,8 +90,10 @@ public class HeroTank extends AbstractTank implements Runnable{
 			herotank = new ImageIcon("images/playertank12.png");
 			break;
 		default :
-			directed = Directed.SOUTH;
-			herotank = new ImageIcon("images/playertank14.png");
+			if(herotank == null){
+				directed = Directed.SOUTH;
+				herotank = new ImageIcon("images/playertank14.png");
+			}
 		}
 		this.gr.drawImage(herotank.getImage(),tank.getX(),tank.getY(), null);
 	}
@@ -106,6 +109,17 @@ public class HeroTank extends AbstractTank implements Runnable{
 
 	public void run() {
 		
+	}
+
+	public void stop() {
+		this.speed = 0;
+	}
+
+	public boolean ifCollisionWall() {
+		if(this.x <= 0 || this.x >= TankPanel.width || this.y <= 0 || this.y >= TankPanel.height){
+			return true;
+		}
+		return false;
 	}
 	
 

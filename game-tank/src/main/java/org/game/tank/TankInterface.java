@@ -16,5 +16,9 @@ public interface TankInterface {
 	
 	public void died();
 	
+	public void stop();
+	
+	public boolean ifCollisionWall();
+	
 	
 }
