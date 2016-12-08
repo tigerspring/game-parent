@@ -9,7 +9,7 @@ import org.game.tank.tankimpl.AbstractTank;
 
 public class HeroBullet extends Bullet{
 
-	private int speed = 4;
+	private int speed = 30;
 	
 	private ImageIcon bulletImg;
 	

@@ -133,7 +133,7 @@ public class HeroTank extends AbstractTank implements Runnable{
 			this.y = this.y + speed;
 			return true;
 		}
-		if(this.y >= (TankPanel.height - herotank.getIconHeight()*3)){
+		if(this.y >= (TankPanel.height - herotank.getIconHeight())){
 			this.y = this.y - speed;
 			return true;
 		}

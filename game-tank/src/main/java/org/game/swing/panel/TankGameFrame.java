@@ -13,10 +13,10 @@ public class TankGameFrame extends JFrame{
 	public TankGameFrame(){
 		super("坦克大战");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(700, 500);
 		this.setVisible(true);
-		this.setResizable(false);
-		TankPanel tp = new TankPanel(this.getWidth(),this.getHeight());
+		this.setResizable(true);
+		TankPanel tp = new TankPanel(700,500);
+		this.setSize(tp.getWidth(), tp.getHeight());
 		this.add(tp);
 		this.addKeyListener(tp);
 		this.setBackground(Color.gray);
