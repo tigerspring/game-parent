@@ -2,6 +2,7 @@ package org.game.tank;
 
 import java.awt.Graphics;
 
+import org.game.directed.Directed;
 import org.game.tank.tankimpl.AbstractTank;
 
 public interface TankInterface {
@@ -16,7 +17,7 @@ public interface TankInterface {
 	
 	public void died();
 	
-	public void stop();
+	public Directed stop();
 	
 	public boolean ifCollisionWall();
 	

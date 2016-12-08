@@ -15,9 +15,11 @@ public class HeroTank extends AbstractTank implements Runnable{
 	
 	private static HeroTank heroTank;
 	
-	
+	private Directed soptDirected;
 	
 	private Bullet bullet;
+	
+	private ImageIcon herotank;
 	
 	private HeroTank(){};
 	
@@ -29,8 +31,9 @@ public class HeroTank extends AbstractTank implements Runnable{
 	}
 	
 	public void move(int type) {
-		this.speed = 2;
-		switch(type){
+		if(!ifCollisionWall()){
+			this.speed = 5;
+			switch(type){
 			case KeyEvent.VK_S:
 				this.y = this.y + speed;
 				break;
@@ -43,6 +46,7 @@ public class HeroTank extends AbstractTank implements Runnable{
 			case KeyEvent.VK_W: 
 				this.y = this.y - speed;
 				break;
+			}
 		}
 	}
 
@@ -111,12 +115,26 @@ public class HeroTank extends AbstractTank implements Runnable{
 		
 	}
 
-	public void stop() {
+	public Directed stop() {
 		this.speed = 0;
+		return this.directed;
 	}
 
 	public boolean ifCollisionWall() {
-		if(this.x <= 0 || this.x >= TankPanel.width || this.y <= 0 || this.y >= TankPanel.height){
+		if(this.x < 0 ){
+			this.x = this.x + speed;
+			return true;
+		}
+		if(this.x >= TankPanel.width-herotank.getIconWidth()){
+			this.x = this.x - speed ;
+			return true;
+		}
+		if(this.y < 0){
+			this.y = this.y + speed;
+			return true;
+		}
+		if(this.y >= (TankPanel.height - herotank.getIconHeight()*3)){
+			this.y = this.y - speed;
 			return true;
 		}
 		return false;

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import org.game.bullet.bulletimpl.Bullet;
 import org.game.bullet.bulletimpl.HeroBullet;
+import org.game.directed.Directed;
 import org.game.tank.tankimpl.AbstractTank;
 import org.game.tank.tankimpl.HeroTank;
 
@@ -32,6 +33,7 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 	public TankPanel(int width,int height){
 		TankPanel.width = width;
 		TankPanel.height = height;
+		this.setSize(width, height);
 	}
 
 	@Override
@@ -53,6 +55,9 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 				heroTank.setFired(false);
 			}
 		}
+//		if(heroTank.ifCollisionWall()){
+//			 Directed directed = heroTank.stop();
+//		}
 		
 		g.drawImage(img, 0, 0, this);
 	}
@@ -96,7 +101,7 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 		while(true){
 			try {
 				repaint();
-				Thread.sleep(10);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
