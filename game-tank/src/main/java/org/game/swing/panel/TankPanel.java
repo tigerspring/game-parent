@@ -39,7 +39,7 @@ public class TankPanel extends JPanel implements KeyListener,Runnable{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		Image img = this.createImage(this.width, this.height);
+		Image img = this.createImage(TankPanel.width, TankPanel.height);
 		Graphics gr = img.getGraphics();
 		
 		heroTank = HeroTank.getTankInstance();

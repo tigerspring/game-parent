@@ -1,6 +1,7 @@
 package org.game.swing.panel;
 
 import java.awt.Color;
+import java.awt.Container;
 
 import javax.swing.JFrame;
 
@@ -13,10 +14,10 @@ public class TankGameFrame extends JFrame{
 	public TankGameFrame(){
 		super("坦克大战");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(700,500);
 		this.setVisible(true);
-		this.setResizable(true);
-		TankPanel tp = new TankPanel(700,500);
-		this.setSize(tp.getWidth(), tp.getHeight());
+		Container ct = this.getContentPane();
+		TankPanel tp = new TankPanel(ct.getWidth(),ct.getHeight());
 		this.add(tp);
 		this.addKeyListener(tp);
 		this.setBackground(Color.gray);
